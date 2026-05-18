@@ -86,6 +86,7 @@ t_stack	*ft_init(int argc, char **argv)
 		return (NULL);
 	size = argc - 1;
 	tab = ft_creattab(argc, argv);
+	printf("\n dicord = %f\n", ft_disorder(tab, size));
 	if (ft_chechdouble(tab, size) == -1)
 	{
 		free(tab);
@@ -94,6 +95,32 @@ t_stack	*ft_init(int argc, char **argv)
 	stack = ft_createstack(tab, size);
 	free(tab);
 	return (stack);
+}
+
+float	ft_disorder(long *tab, int size)
+{
+	int	i;
+	int	j;
+	int	disord;
+	int	pair;
+
+	disord = 0;
+	pair = 0;
+	i = 0;
+	while (i < size - 1)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (tab[i] > tab[j])
+				disord++;
+			pair++;
+			j++;
+		}
+		i++;
+	}
+	printf("pair = %d et discord = %d\n", pair, disord);
+	return ((float)disord/pair);
 }
 
 // int	main(int argc, char **argv)
@@ -139,28 +166,28 @@ int main(int argc, char **argv)
     if (!stack_a)
         return (write(2, "Error\n", 6));
 
-    printf("--- init ---\n");
-    ft_printlst(stack_a);
+    // printf("--- init ---\n");
+    // ft_printlst(stack_a);
 
-    printf("--- sa ---\n");
-    ft_sa(&stack_a);
-    ft_printlst(stack_a);
+    // printf("--- sa ---\n");
+    // ft_sa(&stack_a);
+    // ft_printlst(stack_a);
 
-    printf("--- pb ---\n");
-    ft_pb(&stack_a, &stack_b);
-    printf("a: "); ft_printlst(stack_a);
-    printf("b: "); ft_printlst(stack_b);
+    // printf("--- pb ---\n");
+    // ft_pb(&stack_a, &stack_b);
+    // printf("a: "); ft_printlst(stack_a);
+    // printf("b: "); ft_printlst(stack_b);
 
-    printf("--- ra ---\n");
-    ft_ra(&stack_a);
-    ft_printlst(stack_a);
+    // printf("--- ra ---\n");
+    // ft_ra(&stack_a);
+    // ft_printlst(stack_a);
 
-    printf("--- rra ---\n");
-    ft_rra(&stack_a);
-    ft_printlst(stack_a);
+    // printf("--- rra ---\n");
+    // ft_rra(&stack_a);
+    // ft_printlst(stack_a);
 
-    printf("--- pa ---\n");
-    ft_pa(&stack_a, &stack_b);
+    // printf("--- pa ---\n");
+    // ft_pa(&stack_a, &stack_b);
     printf("a: "); ft_printlst(stack_a);
     printf("b: "); ft_printlst(stack_b);
 

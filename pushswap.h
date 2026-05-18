@@ -54,5 +54,6 @@ void				ft_rrotate(t_stack **list);
 void				ft_rra(t_stack **a);
 void				ft_rrb(t_stack **b);
 void				ft_rrr(t_stack **a, t_stack **b);
+float				ft_disorder(long *tab, int size);
 
 #endif
