@@ -1,6 +1,6 @@
 CC	= cc
 CFLAGS	= -Wall -Wextra -Werror
-NAME	= a.out
+NAME	= push_swap
 SRCS	= pushswap.c error.c operation.c
 OBJS	= $(SRCS:.c=.o)
 
