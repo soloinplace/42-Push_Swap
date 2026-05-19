@@ -12,9 +12,9 @@
 
 #include "pushswap.h"
 
-t_stack	*ft_newnode(int value)
+t_stack *ft_newnode(int value)
 {
-	t_stack	*node;
+	t_stack *node;
 
 	node = malloc(sizeof(t_stack));
 	if (!node)
@@ -24,26 +24,26 @@ t_stack	*ft_newnode(int value)
 	return (node);
 }
 
-void	ft_lstadd_back(t_stack **lst, t_stack *new)
+void ft_lstadd_back(t_stack **lst, t_stack *new)
 {
-	t_stack	*current;
+	t_stack *current;
 
 	if (*lst == NULL)
 	{
 		*lst = new;
-		return ;
+		return;
 	}
 	current = *lst;
 	while (current->next != NULL)
 		current = current->next;
 	current->next = new;
-	return ;
+	return;
 }
 
-t_stack	*ft_createstack(long *tab, int size)
+t_stack *ft_createstack(long *tab, int size)
 {
-	int		i;
-	t_stack	*stack;
+	int i;
+	t_stack *stack;
 
 	i = 0;
 	stack = NULL;
@@ -54,9 +54,9 @@ t_stack	*ft_createstack(long *tab, int size)
 	return (stack);
 }
 
-int	ft_lstsize(t_stack *lst)
+int ft_lstsize(t_stack *lst)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (lst != NULL)
@@ -67,7 +67,7 @@ int	ft_lstsize(t_stack *lst)
 	return (i);
 }
 
-void	ft_printlst(t_stack *lst) // retirer pour le push car printf
+void ft_printlst(t_stack *lst) // retirer pour le push car printf
 {
 	while (lst != NULL)
 	{
@@ -76,120 +76,76 @@ void	ft_printlst(t_stack *lst) // retirer pour le push car printf
 	}
 }
 
-t_stack	*ft_init(int argc, char **argv)
+t_stack *ft_init(int argc, char **argv)
 {
-	long	*tab;
-	t_stack	*stack;
-	int		size;
+	long *tab;
+	t_stack *stack;
+	int size;
 
 	if (argc < 2 || ft_stringerror(argc, argv) == -1)
 		return (NULL);
 	size = argc - 1;
 	tab = ft_creattab(argc, argv);
-	printf("\n dicord = %f\n", ft_disorder(tab, size));
 	if (ft_chechdouble(tab, size) == -1)
 	{
 		free(tab);
 		return (NULL);
 	}
+	printf("\n dicord = %f\n", ft_disorder(tab, size));
 	stack = ft_createstack(tab, size);
 	free(tab);
 	return (stack);
 }
-
-float	ft_disorder(long *tab, int size)
+void	ft_simple(t_stack **stack_a, t_stack **stack_b)
 {
-	int	i;
-	int	j;
-	int	disord;
-	int	pair;
-
-	disord = 0;
-	pair = 0;
-	i = 0;
-	while (i < size - 1)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (tab[i] > tab[j])
-				disord++;
-			pair++;
-			j++;
-		}
-		i++;
-	}
-	printf("pair = %d et discord = %d\n", pair, disord);
-	return ((float)disord/pair);
+	(void)stack_a;
+	(void)stack_b;
 }
-
-// int	main(int argc, char **argv)
-// {
-// 	t_stack	*stack_a;
-// 	t_stack	*stack_b;
-
-// 	stack_a = ft_init(argc, argv);
-// 	stack_b = NULL;
-// 	if (!stack_a)
-// 		return (write(2, "Error\n", 6));
-
-
-// 	///// test  //////
-// 	ft_printlst(stack_a);
-// 	ft_printlst(stack_b);
-
-
-// 	ft_ra(&stack_a);
-// 	ft_ra(&stack_a);
-
-// 	printf("\na  =======->\n");
-// 	ft_printlst(stack_a);
-// 	printf("\nb  =======->\n");
-// 	ft_printlst(stack_b);
-
-// 	ft_pb(&stack_a, &stack_b);
-// 	printf("\na  =======->\n");
-// 	ft_printlst(stack_a);
-// 	printf("\nb  =======->\n");
-// 	ft_printlst(stack_b);
-
-// 	return (0);
-// }
+void	ft_medium(t_stack **stack_a, t_stack **stack_b)
+{
+	(void)stack_a;
+	(void)stack_b;
+}
+void	ft_complex(t_stack **stack_a, t_stack **stack_b)
+{
+	(void)stack_a;
+	(void)stack_b;
+}
+void	ft_adaptive(t_stack **stack_a, t_stack **stack_b)
+{
+	(void)stack_a;
+	(void)stack_b;
+}
 
 int main(int argc, char **argv)
 {
     t_stack *stack_a;
     t_stack *stack_b;
+    int     flag;
 
-    stack_a = ft_init(argc, argv);
-    stack_b = NULL;
+    flag = ft_getflag(argc, argv);
+    if (flag == -1)
+	{
+        return (write(2, "Error\n", 6));
+	}
+	if (flag >= 1 && flag <= 4)
+	{
+		stack_a = ft_init(argc - 1, argv + 1);
+	}
+    else
+	{
+		stack_a = ft_init(argc, argv);
+	}
+	stack_b = NULL;
     if (!stack_a)
         return (write(2, "Error\n", 6));
-
-    // printf("--- init ---\n");
-    // ft_printlst(stack_a);
-
-    // printf("--- sa ---\n");
-    // ft_sa(&stack_a);
-    // ft_printlst(stack_a);
-
-    // printf("--- pb ---\n");
-    // ft_pb(&stack_a, &stack_b);
-    // printf("a: "); ft_printlst(stack_a);
-    // printf("b: "); ft_printlst(stack_b);
-
-    // printf("--- ra ---\n");
-    // ft_ra(&stack_a);
-    // ft_printlst(stack_a);
-
-    // printf("--- rra ---\n");
-    // ft_rra(&stack_a);
-    // ft_printlst(stack_a);
-
-    // printf("--- pa ---\n");
-    // ft_pa(&stack_a, &stack_b);
-    printf("a: "); ft_printlst(stack_a);
-    printf("b: "); ft_printlst(stack_b);
-
+    if (flag == 1)
+        ft_simple(&stack_a, &stack_b);
+    else if (flag == 2)
+        ft_medium(&stack_a, &stack_b);
+    else if (flag == 3)
+        ft_complex(&stack_a, &stack_b);
+    else
+        ft_adaptive(&stack_a, &stack_b);
     return (0);
 }

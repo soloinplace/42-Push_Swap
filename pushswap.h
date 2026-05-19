@@ -55,5 +55,11 @@ void				ft_rra(t_stack **a);
 void				ft_rrb(t_stack **b);
 void				ft_rrr(t_stack **a, t_stack **b);
 float				ft_disorder(long *tab, int size);
+int					ft_strncmp(const char *s1, const char *s2, size_t n);
+int 				ft_getflag(int argc, char **argv);
+void	ft_simple(t_stack **stack_a, t_stack **stack_b);
+void	ft_medium(t_stack **stack_a, t_stack **stack_b);
+void	ft_complex(t_stack **stack_a, t_stack **stack_b);
+void	ft_adaptive(t_stack **stack_a, t_stack **stack_b);
 
 #endif
