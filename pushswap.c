@@ -20,6 +20,7 @@ t_stack	*ft_newnode(int value)
 	if (!node)
 		return (NULL);
 	node->value = value;
+	node->index = 0;
 	node->next = NULL;
 	return (node);
 }
@@ -71,7 +72,7 @@ void	ft_printlst(t_stack *lst) // retirer pour le push car printf
 {
 	while (lst != NULL)
 	{
-		printf("%d\n", lst->value);
+		//printf("valeur = %d et index = %d.\n", lst->value, lst->index);
 		lst = lst->next;
 	}
 }
@@ -91,7 +92,7 @@ t_stack	*ft_init(int argc, char **argv)
 		free(tab);
 		return (NULL);
 	}
-	printf("\n dicord = %f\n", ft_disorder(tab, size));
+	//printf("\n dicord = %f\n", ft_disorder(tab, size));
 	stack = ft_createstack(tab, size);
 	free(tab);
 	return (stack);
@@ -138,6 +139,5 @@ int	main(int argc, char **argv)
 		ft_complex(&stack_a, &stack_b);
 	else
 		ft_adaptive(&stack_a, &stack_b);
-	ft_printlst(stack_a);
 	return (0);
 }

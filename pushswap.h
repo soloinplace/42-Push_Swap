@@ -63,5 +63,8 @@ void				ft_medium(t_stack **stack_a, t_stack **stack_b);
 void				ft_complex(t_stack **stack_a, t_stack **stack_b);
 void				ft_adaptive(t_stack **stack_a, t_stack **stack_b);
 int					ft_issorted(t_stack *list);
+int					ft_sqrt(int n);
+void				ft_setindex(t_stack **list);
+int					ft_rangindex(t_stack *lst, int index);
 
 #endif
