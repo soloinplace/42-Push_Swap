@@ -34,19 +34,14 @@ void	ft_printlst(t_stack *lst) // retirer pour le push car printf
 	}
 }
 
-void	ft_complex(t_stack **stack_a, t_stack **stack_b)
-{
-	(void)stack_a;
-	(void)stack_b;
-}
 void	ft_adaptive(t_stack **stack_a, t_stack **stack_b, int disord, int flag, t_bench *bench)
 {
 	if ((disord < 0.2 && (flag == 4 || flag == 0)) || flag == 1)
 		ft_simple(stack_a, bench);
 	else if ((disord < 0.5 && (flag == 4 || flag == 0)) || flag == 2)
 		ft_medium(stack_a, stack_b, bench);
-	// else if ((disord >= 0.5 && (flag == 4 || flag == 0)) || flag == 4)
-	// 	ft_complex();
+	else if ((disord >= 0.5 && (flag == 4 || flag == 0)) || flag == 4)
+		ft_complex(stack_a, stack_b, bench);
 
 }
 

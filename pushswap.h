@@ -82,7 +82,7 @@ int					ft_getflag(int argc, char **argv);
 void				ft_simple(t_stack **stack_a, t_bench *bench);
 void				ft_medium(t_stack **stack_a, t_stack **stack_b,
 						t_bench *bench);
-void				ft_complex(t_stack **stack_a, t_stack **stack_b);
+void	ft_complex(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void				ft_adaptive(t_stack **stack_a, t_stack **stack_b,
 						int disord, int flag, t_bench *bench);
 int					ft_issorted(t_stack *list);
