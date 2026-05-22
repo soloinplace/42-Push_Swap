@@ -60,7 +60,7 @@ int	ft_rangindex(t_stack *lst, int index)
 	}
 	return (i);
 }
-void	ft_medium(t_stack **stack_a, t_stack **stack_b)
+void	ft_medium(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 {
 	int	chunk;
 	int	count;
@@ -76,27 +76,26 @@ void	ft_medium(t_stack **stack_a, t_stack **stack_b)
 		{
 			if (count == (chunk - 1)|| size == count)
 				chunk = chunk + ft_sqrt(ft_lstsize((*stack_a))) * 2;
-			ft_pb(stack_a, stack_b);
+			ft_pb(stack_a, stack_b, bench);
 			count++;
 		}
 		else
-			ft_ra(stack_a);
+			ft_ra(stack_a, bench);
 	}
 	count--;
 	while ((*stack_b) != NULL)
 	{
 		if ((*stack_b)->index == count)
 		{
-			ft_pa(stack_a, stack_b);
+			ft_pa(stack_a, stack_b, bench);
 			count--;
 		}
 		else
 		{
 			if (ft_rangindex(*stack_b, count) < (ft_lstsize(*stack_b) / 2))
-				ft_rb(stack_b);
+				ft_rb(stack_b, bench);
 			else
-				ft_rrb(stack_b);
+				ft_rrb(stack_b, bench);
 		}
 	}
-	//ft_printlst(*stack_a);
 }

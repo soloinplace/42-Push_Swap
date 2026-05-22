@@ -24,7 +24,7 @@ int		ft_issorted(t_stack *list)
 	return (1);
 }
 
-void	ft_simple(t_stack **stack_a)
+void	ft_simple(t_stack **stack_a, t_bench *bench)
 {
 	int	i;
 	int count;
@@ -37,15 +37,15 @@ void	ft_simple(t_stack **stack_a)
 		{
 			if ((*stack_a)->value > (*stack_a)->next->value)
 			{
-				ft_sa(stack_a);
+				ft_sa(stack_a, bench);
 			}
-			ft_ra(stack_a);
+			ft_ra(stack_a, bench);
 			i++;
 		}
 		count++;
 		while (i > 0)
 		{
-			ft_rra(stack_a);
+			ft_rra(stack_a, bench);
 			i--;
 		}
 	}
