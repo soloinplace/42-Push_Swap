@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsalland <tsalland@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: csodini <csodini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 12:21:35 by tsalland          #+#    #+#             */
-/*   Updated: 2026/05/22 12:21:43 by tsalland         ###   ########.fr       */
+/*   Updated: 2026/05/25 00:21:58 by csodini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,22 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 
 t_stack	*ft_createstack(long *tab, int size)
 {
-	int		i;
 	t_stack	*stack;
+	t_stack	*new;
+	int		i;
 
 	i = 0;
 	stack = NULL;
 	while (i < size)
 	{
-		ft_lstadd_back(&stack, ft_newnode(tab[i++]));
+		new = ft_newnode(tab[i]);
+		if (!new)
+		{
+			ft_free_stack(&stack);
+			return (NULL);
+		}
+		ft_lstadd_back(&stack, new);
+		i++;
 	}
 	return (stack);
 }
@@ -65,6 +73,8 @@ t_stack	*ft_init(int argc, char **argv, float *disord)
 		return (NULL);
 	size = argc - 1;
 	tab = ft_creattab(argc, argv);
+	if (!tab)
+		return (NULL);
 	if (ft_chechdouble(tab, size) == -1)
 	{
 		free(tab);
@@ -74,4 +84,18 @@ t_stack	*ft_init(int argc, char **argv, float *disord)
 	*disord = ft_disorder(tab, size);
 	free(tab);
 	return (stack);
+}
+
+void	ft_free_stack(t_stack **stack)
+{
+	t_stack	*tmp;
+
+	if (!stack)
+		return ;
+	while (*stack)
+	{
+		tmp = (*stack)->next;
+		free(*stack);
+		*stack = tmp;
+	}
 }

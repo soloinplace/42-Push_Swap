@@ -6,12 +6,11 @@
 /*   By: csodini <csodini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 15:27:48 by tsalland          #+#    #+#             */
-/*   Updated: 2026/05/24 21:11:36 by csodini          ###   ########.fr       */
+/*   Updated: 2026/05/24 23:52:34 by csodini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
-
 
 int	ft_sqrt(int n)
 {
@@ -36,7 +35,7 @@ void	ft_setindex(t_stack **list)
 		{
 			if (save->value < current->value)
 			{
-				current->index++ ;
+				current->index++;
 			}
 			save = save->next;
 		}

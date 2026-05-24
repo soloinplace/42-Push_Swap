@@ -6,7 +6,7 @@
 /*   By: csodini <csodini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 15:09:12 by tsalland          #+#    #+#             */
-/*   Updated: 2026/05/24 22:35:20 by csodini          ###   ########.fr       */
+/*   Updated: 2026/05/25 00:16:20 by csodini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	main(int argc, char **argv)
 	float	disord;
 	int		benchflag;
 
+	if (argc == 1)
+		return (0);
 	benchflag = ft_getbench(&argc, &argv);
 	ft_bzero(&bench, sizeof(bench));
 	flag = ft_getflag(argc, argv);
@@ -74,5 +76,7 @@ int	main(int argc, char **argv)
 	ft_adaptive(&stacks[0], &stacks[1], disord, flag, &bench);
 	if (benchflag == 1)
 		ft_printbench(disord, &bench, flag);
+	ft_free_stack(&stacks[0]);
+	ft_free_stack(&stacks[1]);
 	return (0);
 }

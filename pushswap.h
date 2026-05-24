@@ -6,7 +6,7 @@
 /*   By: csodini <csodini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 22:25:41 by csodini           #+#    #+#             */
-/*   Updated: 2026/05/24 22:35:32 by csodini          ###   ########.fr       */
+/*   Updated: 2026/05/25 00:49:49 by csodini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ t_stack				*ft_init(int argc, char **argv, float *disord);
 t_stack				*ft_createstack(long *tab, int size);
 t_stack				*ft_newnode(int value);
 void				ft_lstadd_back(t_stack **lst, t_stack *new);
+void				ft_free_stack(t_stack **stack);
 int					ft_lstsize(t_stack *lst);
 int					ft_issorted(t_stack *list);
 
