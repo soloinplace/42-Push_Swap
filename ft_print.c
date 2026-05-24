@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsalland <tsalland@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: csodini <csodini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 17:54:14 by tsalland          #+#    #+#             */
-/*   Updated: 2026/05/02 17:54:19 by tsalland         ###   ########.fr       */
+/*   Updated: 2026/05/24 20:56:42 by csodini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ int	ft_putp(char *base, unsigned long n, int fd)
 int	ft_putnbrbas(char *base, long n, int fd)
 {
 	long long	nb;
-	int		lenbase;
-	int		count;
+	int			lenbase;
+	int			count;
 
 	count = 0;
 	lenbase = ft_strlen(base);

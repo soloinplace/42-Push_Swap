@@ -3,31 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   simple.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsalland <tsalland@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: csodini <csodini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 17:44:07 by tsalland          #+#    #+#             */
-/*   Updated: 2026/05/19 17:44:13 by tsalland         ###   ########.fr       */
+/*   Updated: 2026/05/24 22:35:34 by csodini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "pushswap.h"
 
-int		ft_issorted(t_stack *list)
+int	ft_issorted(t_stack *list)
 {
 	while (list->next != NULL)
-		{
-			if (list->value > list->next->value)
-				return (0);
-			list = list->next;
-		}
+	{
+		if (list->value > list->next->value)
+			return (0);
+		list = list->next;
+	}
 	return (1);
 }
 
 void	ft_simple(t_stack **stack_a, t_bench *bench)
 {
 	int	i;
-	int count;
+	int	count;
 
 	count = 0;
 	while (ft_issorted(*stack_a) == 0)

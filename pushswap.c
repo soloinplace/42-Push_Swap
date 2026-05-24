@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsalland <tsalland@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: csodini <csodini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 15:09:12 by tsalland          #+#    #+#             */
-/*   Updated: 2026/05/13 15:09:16 by tsalland         ###   ########.fr       */
+/*   Updated: 2026/05/24 22:35:20 by csodini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,56 +25,53 @@ int	ft_lstsize(t_stack *lst)
 	return (i);
 }
 
-void	ft_printlst(t_stack *lst) // retirer pour le push car printf
+void	ft_adaptive(t_stack **stack_a, t_stack **stack_b, float disord,
+		int flag, t_bench *bench)
 {
-	while (lst != NULL)
-	{
-		printf("valeur = %d et index = %d.\n", lst->value, lst->index);
-		lst = lst->next;
-	}
+	if (flag == 1 || ((flag == 4 || flag == 0) && disord < 0.2))
+		ft_simple(stack_a, bench);
+	else if (flag == 2 || ((flag == 4 || flag == 0) && disord < 0.5))
+		ft_medium(stack_a, stack_b, bench);
+	else if (flag == 3 || ((flag == 4 || flag == 0) && disord >= 0.5))
+		ft_complex(stack_a, stack_b, bench);
 }
 
-void	ft_adaptive(t_stack **stack_a, t_stack **stack_b, int disord, int flag, t_bench *bench)
+static int	ft_getbench(int *argc, char ***argv)
 {
-	if ((disord < 0.2 && (flag == 4 || flag == 0)) || flag == 1)
-		ft_simple(stack_a, bench);
-	else if ((disord < 0.5 && (flag == 4 || flag == 0)) || flag == 2)
-		ft_medium(stack_a, stack_b, bench);
-	else if ((disord >= 0.5 && (flag == 4 || flag == 0)) || flag == 4)
-		ft_complex(stack_a, stack_b, bench);
+	if (*argc >= 2 && ft_strncmp((*argv)[1], "--bench", 8) == 0)
+	{
+		(*argv)++;
+		(*argc)--;
+		return (1);
+	}
+	return (0);
+}
 
+static t_stack	*ft_getstack(int argc, char **argv, int flag, float *disord)
+{
+	if (flag >= 1 && flag <= 4)
+		return (ft_init(argc - 1, argv + 1, disord));
+	return (ft_init(argc, argv, disord));
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	t_stack	*stacks[2];
 	int		flag;
 	t_bench	bench;
 	float	disord;
 	int		benchflag;
 
-	benchflag = 0;
-	if (argc >= 2 && ft_strncmp(argv[1], "--bench", 8) == 0)
-	{
-		argv++;
-		argc--;
-		benchflag = 1;
-	}
+	benchflag = ft_getbench(&argc, &argv);
 	ft_bzero(&bench, sizeof(bench));
 	flag = ft_getflag(argc, argv);
 	if (flag == -1)
 		return (write(2, "Error\n", 6));
-	if (flag >= 1 && flag <= 4)
-		stack_a = ft_init(argc - 1, argv + 1, &disord);
-	else
-		stack_a = ft_init(argc, argv, &disord);
-	stack_b = NULL;
-	if (!stack_a)
+	stacks[0] = ft_getstack(argc, argv, flag, &disord);
+	stacks[1] = NULL;
+	if (!stacks[0])
 		return (write(2, "Error\n", 6));
-
-	ft_adaptive(&stack_a, &stack_b, disord, flag, &bench);
-
+	ft_adaptive(&stacks[0], &stacks[1], disord, flag, &bench);
 	if (benchflag == 1)
 		ft_printbench(disord, &bench, flag);
 	return (0);

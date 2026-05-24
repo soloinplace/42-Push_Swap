@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsalland <tsalland@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: csodini <csodini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 15:07:55 by tsalland          #+#    #+#             */
-/*   Updated: 2026/05/13 15:08:04 by tsalland         ###   ########.fr       */
+/*   Updated: 2026/05/24 20:55:49 by csodini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,27 @@ int	ft_isdigit(int c)
 
 long	ft_longatoi(const char *nptr)
 {
-	int(i) = 0;
-	long(mult) = 1;
-	long(nb) = 0;
-	int(neg) = 1;
+	int		i;
+	int		sign;
+	long	nb;
+
+	i = 0;
+	sign = 1;
+	nb = 0;
 	while (nptr[i] == ' ' || (nptr[i] >= '\t' && nptr[i] <= '\r'))
-	{
 		i++;
-	}
 	if (nptr[i] == '-' || nptr[i] == '+')
 	{
 		if (nptr[i] == '-')
-			neg = neg * -1;
+			sign = -1;
 		i++;
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
-		i++;
-	i--;
-	while (i >= 0 && (nptr[i] >= '0' && nptr[i] <= '9'))
 	{
-		nb = nb + ((nptr[i] - '0') * mult);
-		mult = mult * 10;
-		i--;
+		nb = nb * 10 + (nptr[i] - '0');
+		i++;
 	}
-	return (nb * neg);
+	return (nb * sign);
 }
 
 int	ft_stringerror(int argc, char **argv)

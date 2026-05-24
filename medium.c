@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   medium.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsalland <tsalland@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: csodini <csodini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 15:27:48 by tsalland          #+#    #+#             */
-/*   Updated: 2026/05/21 15:27:51 by tsalland         ###   ########.fr       */
+/*   Updated: 2026/05/24 21:11:36 by csodini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
 
-int ft_sqrt(int n)
+int	ft_sqrt(int n)
 {
-    int i;
+	int	i;
 
-    i = 1;
-    while (i * i <= n)
-        i++;
-    return (i - 1);
+	i = 1;
+	while (i * i <= n)
+		i++;
+	return (i - 1);
 }
 
 void	ft_setindex(t_stack **list)
 {
-	t_stack *current;
-	t_stack *save;
+	t_stack	*current;
+	t_stack	*save;
 
 	current = (*list);
 	while (current != NULL)
@@ -38,7 +38,7 @@ void	ft_setindex(t_stack **list)
 			{
 				current->index++ ;
 			}
-		save = save->next;
+			save = save->next;
 		}
 		current = current->next;
 	}
@@ -60,30 +60,39 @@ int	ft_rangindex(t_stack *lst, int index)
 	}
 	return (i);
 }
-void	ft_medium(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
+
+static int	ft_push_chunks(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 {
 	int	chunk;
 	int	count;
-	int size;
+	int	size;
 
 	ft_setindex(stack_a);
-	size = ft_lstsize((*stack_a));
+	size = ft_lstsize(*stack_a);
 	count = 0;
-	chunk = ft_sqrt(ft_lstsize((*stack_a))) * 2;
-	while ((*stack_a) != NULL)
+	chunk = ft_sqrt(size) * 2;
+	while (*stack_a != NULL)
 	{
-		if ((*stack_a)->index <= (chunk - 1) || size == count)
+		if ((*stack_a)->index <= chunk - 1 || size == count)
 		{
-			if (count == (chunk - 1)|| size == count)
-				chunk = chunk + ft_sqrt(ft_lstsize((*stack_a))) * 2;
+			if (count == chunk - 1 || size == count)
+				chunk = chunk + ft_sqrt(ft_lstsize(*stack_a)) * 2;
 			ft_pb(stack_a, stack_b, bench);
 			count++;
 		}
 		else
 			ft_ra(stack_a, bench);
 	}
+	return (count);
+}
+
+void	ft_medium(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
+{
+	int	count;
+
+	count = ft_push_chunks(stack_a, stack_b, bench);
 	count--;
-	while ((*stack_b) != NULL)
+	while (*stack_b != NULL)
 	{
 		if ((*stack_b)->index == count)
 		{
@@ -92,7 +101,8 @@ void	ft_medium(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 		}
 		else
 		{
-			if (ft_rangindex(*stack_b, count) < (ft_lstsize(*stack_b) / 2))
+			if (ft_rangindex(*stack_b, count)
+				< ft_lstsize(*stack_b) / 2)
 				ft_rb(stack_b, bench);
 			else
 				ft_rrb(stack_b, bench);

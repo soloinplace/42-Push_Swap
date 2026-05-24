@@ -1,7 +1,21 @@
-CC	= cc
+CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 NAME	= push_swap
-SRCS	= pushswap.c error.c	ft_printf.c	ft_print.c	complex.c	operation.c	flag.c	simple.c	init.c	medium.c	bench.c
+
+SRCS	= pushswap.c \
+		  error.c \
+		  ft_printf.c \
+		  ft_print.c \
+		  complex.c \
+		  operation_swap_push.c \
+		  operation_push_rotate.c \
+		  operation_rrotate.c \
+		  flag.c \
+		  simple.c \
+		  init.c \
+		  medium.c \
+		  bench.c
+
 OBJS	= $(SRCS:.c=.o)
 
 all: $(NAME)
