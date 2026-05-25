@@ -6,7 +6,7 @@
 /*   By: csodini <csodini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 21:52:49 by csodini           #+#    #+#             */
-/*   Updated: 2026/05/24 21:57:16 by csodini          ###   ########.fr       */
+/*   Updated: 2026/05/25 19:21:49 by csodini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void	ft_swap(t_stack **lst)
 	tmp = (*lst)->next->value;
 	(*lst)->next->value = (*lst)->value;
 	(*lst)->value = tmp;
+	tmp = (*lst)->next->index;
+	(*lst)->next->index = (*lst)->index;
+	(*lst)->index = tmp;
 }
 
 void	ft_sa(t_stack **a, t_bench *s_bench)

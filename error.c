@@ -6,7 +6,7 @@
 /*   By: csodini <csodini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 15:07:55 by tsalland          #+#    #+#             */
-/*   Updated: 2026/05/24 20:55:49 by csodini          ###   ########.fr       */
+/*   Updated: 2026/05/25 20:01:20 by csodini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ int	ft_stringerror(int argc, char **argv)
 		j = 0;
 		if (argv[i][0] == '\0')
 			return (-1);
+		if (argv[i][j] == '-' || argv[i][j] == '+')
+			j++;
+		if (argv[i][j] == '\0')
+			return (-1);
 		while (argv[i][j] != '\0')
 		{
-			if (j == 0 && argv[i][j] == '-')
-				j++;
 			if (ft_isdigit(argv[i][j]) != 1)
-			{
 				return (-1);
-			}
 			j++;
 		}
 		i++;
@@ -99,8 +99,15 @@ long	*ft_creattab(int argc, char **argv)
 
 	i = 0;
 	tab = malloc(sizeof(long) * (argc - 1));
+	if (!tab)
+		return (NULL);
 	while (i < (argc - 1))
 	{
+		if (ft_strlen(argv[i + 1]) > 11)
+		{
+			free(tab);
+			return (NULL);
+		}
 		tab[i] = ft_longatoi(argv[i + 1]);
 		i++;
 	}

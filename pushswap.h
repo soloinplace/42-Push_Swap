@@ -6,7 +6,7 @@
 /*   By: csodini <csodini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 22:25:41 by csodini           #+#    #+#             */
-/*   Updated: 2026/05/25 00:49:49 by csodini          ###   ########.fr       */
+/*   Updated: 2026/05/25 20:00:50 by csodini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ typedef struct s_bench
 	int				rrb;
 	int				rrr;
 }					t_bench;
+
+typedef struct s_context
+{
+	int				flag;
+	int				benchflag;
+	float			disord;
+	t_bench			bench;
+}					t_context;
 
 int					ft_putchar_fd(char c, int fd);
 int					ft_putstr_fd(char *s, int fd);
@@ -92,8 +100,7 @@ void				ft_medium(t_stack **stack_a, t_stack **stack_b,
 void				ft_complex(t_stack **stack_a, t_stack **stack_b,
 						t_bench *bench);
 void				ft_adaptive(t_stack **stack_a, t_stack **stack_b,
-						float disord, int flag, t_bench *bench);
-
+						t_context *ctx);
 int					ft_sqrt(int n);
 void				ft_setindex(t_stack **list);
 int					ft_rangindex(t_stack *lst, int index);
