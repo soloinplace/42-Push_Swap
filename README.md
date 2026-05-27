@@ -119,9 +119,9 @@ Example:
 ```text
 [bench] disorder: 40.00%
 [bench] strategy: Adaptive / O(n sqrt n)
-[bench] total_ops: 13
+[bench] total_ops: 16
 [bench] sa: 0 sb: 0 ss: 0 pa: 5 pb: 5
-[bench] ra: 2 rb: 1 rr: 0 rra: 0 rrb: 0 rrr: 0
+[bench] ra: 1 rb: 0 rr: 0 rra: 0 rrb: 5 rrr: 0
 ```
 
 Operations are printed to `stdout`, while benchmark information is printed to `stderr`.
@@ -177,7 +177,7 @@ Rejected examples:
 
 ### Simple strategy — `O(n^2)`
 
-The simple strategy is a baseline sorting method.
+The simple strategy is a baseline sorting method ("bubble sort").
 
 It performs local stack operations until stack `a` becomes sorted. It is easy to understand and useful for small or low-disorder inputs, but its theoretical upper bound is quadratic.
 

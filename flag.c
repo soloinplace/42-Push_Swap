@@ -6,7 +6,7 @@
 /*   By: csodini <csodini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 15:10:17 by tsalland          #+#    #+#             */
-/*   Updated: 2026/05/24 20:55:51 by csodini          ###   ########.fr       */
+/*   Updated: 2026/05/27 11:55:48 by csodini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ int	ft_getflag(int argc, char **argv)
 {
 	if (argc < 2)
 		return (-1);
-	if (!ft_strncmp(argv[1], "--simple", 10))
+	if (!ft_strncmp(argv[1], "--simple", 9))
 		return (1);
-	if (!ft_strncmp(argv[1], "--medium", 10))
+	if (!ft_strncmp(argv[1], "--medium", 9))
 		return (2);
 	if (!ft_strncmp(argv[1], "--complex", 10))
 		return (3);
-	if (!ft_strncmp(argv[1], "--adaptive", 10))
+	if (!ft_strncmp(argv[1], "--adaptive", 11))
 		return (4);
 	return (0);
 }
